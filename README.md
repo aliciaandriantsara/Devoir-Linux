@@ -1,2 +1,2 @@
 # Devoir-Linux
-Installation php apache sql
+Installation php apache mysql
