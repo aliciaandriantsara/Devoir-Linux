@@ -1,0 +1,81 @@
+RAPPORT DE L’INSTALLATION DE PHP, APACHE, MYSQL
+
+Insatallation de php :
+1) Récupérer  le code source dans le site web de php. On obtient :
+	php-8.1.28.tar.bz2
+2) Décompresser et désarchiver en même temps ce code source
+	tar -zvxf php-8.1.28.tar.bz2
+3)Rentrer dans le dossier créé par la décompression et le désarchivage du code source
+	cd php-8.1.28/
+4)Configurer tous les fichiers dans ce dossier
+	./configure
+5)Il manque une dépendance donc nous devons savoir de quelle dépendance il s’agit
+	more pkg-config man
+6)Installer la dépendance manquante
+	sudo apt install libxml2 libxml2-dev
+7)Reconfigurer tous les fichiers dans ce dossier
+	./configure
+8)Compiler l’ensemble des fichiers dans  ce dossier
+	make
+9)Copier les fichiers suivant l’arborescence c’est-à-dire l’installation binaire
+	sudo make install
+10)Vérification si php est bien installé
+	php -v
+Cette commande montre les informations sur la version de php installé dans le système.
+
+Installaton d’apache
+1) Récupérer  le code source dans le site web d’apache. On obtient :
+	httpd-2.4.59.tar.bz2 
+2) Décompresser et désarchiver en même temps ce code source
+	tar -jxvf httpd-2.4.59.tar.bz2 
+3)Rentrer dans le dossier créé par la décompression et le désarchivage du code source
+	cd httpd-2.4.59/
+4)Configurer tous les fichiers dans ce dossier
+	./configure
+5)Compiler l’ensemble des fichiers dans  ce dossier
+	make
+6)Copier les fichiers suivant l’arborescence c’est-à-dire l’installation binaire
+	sudo make install
+7)Vérification si php est bien installé
+	systemctl status apache2
+	systemctl start apache2
+Le système demande l’authentification de l’utilisateur et le site web d’apache s’ouvre dans un nouvelle fenêtre.
+
+Installation de mysql
+1) Récupérer  le code source.
+	sudo apt install mysql-source-8.0
+2) Décompresser et désarchiver en même temps ce code source
+	tar -zxvf mysql-8.0.36.tar.gz 
+3)Rentrer dans le dossier créé par la décompression et le désarchivage du code source
+	cd mysql-8.0.36/
+4)Configurer tous les fichiers dans ce dossier
+	cmake .
+5)On voit qu’il manque une dépendance nommée boost donc il faiut installer ce dernier.
+	sudo apt-get install libboost-all-dev
+6)Rentrer dans le dossier créé par ce dernier
+	cd boost_1_77_0
+7)Préparation de l’execution des fichiers dans ce dossier
+	./bootstrap.sh
+8)Execution de tous les fichiers dans le dossier
+	./b2
+9)Compilation de boost
+	make
+10)Installation de boost
+	sudo make install
+11)Mise à jour de boost car la dépénce nécessaire est la dernière version de boost
+	sudo apt upgrade
+12)On revient dans le dossier mysql-8.0.36/
+	cd ..
+13)Reconfigurer tous les fichiers dans ce dossier
+	cmake .
+14)Compiler l’ensemble des fichiers dans  ce dossier
+	make
+15)Copier les fichiers suivant l’arborescence c’est-à-dire l’installation binaire
+	sudo make install
+16)Vérification si php est bien installé
+	mysql --version
+Cette commande montre les informations sur la version de mysql installé dans le système.
+
+
+
+
